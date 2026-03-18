@@ -3,7 +3,6 @@ class Calm < Formula
 
   desc "Terminal-native CLI assistant backed by a local calmd daemon"
   homepage "https://github.com/quirkdom/calm"
-  # Primary URL is the source tarball to satisfy brew audit
   url "https://files.pythonhosted.org/packages/39/de/dfaf2e958426fb5f261dddb8d15506c4701cf56d00ec941f700f47131489/calm_cli-0.3.0.tar.gz"
   sha256 "1f08a3f66360d7c0e1f782c4242c60a1b57b6c8e3b35bb1d5a5ad7eb85fc4cb8"
   license "MIT"
@@ -13,40 +12,41 @@ class Calm < Formula
   depends_on "python@3.14"
 
   on_macos do
+
     resource "hf-xet" do
-      url "https://files.pythonhosted.org/packages/64/2e/af4475c32b4378b0e92a587adb1aa3ec53e3450fd3e5fe0372a874531c00/hf_xet-1.4.2-cp37-abi3-macosx_11_0_arm64.whl"
-      sha256 "e9b38d876e94d4bdcf650778d6ebbaa791dd28de08db9736c43faff06ede1b5a"
+      url "https://files.pythonhosted.org/packages/e4/71/b99aed3823c9d1795e4865cf437d651097356a3f38c7d5877e4ac544b8e4/hf_xet-1.3.2-cp37-abi3-macosx_11_0_arm64.whl"
+      sha256 "a85d3d43743174393afe27835bde0cd146e652b5fcfdbcd624602daef2ef3259"
     end
 
     resource "mlx" do
       if MacOS.version >= 26
-        url "https://files.pythonhosted.org/packages/e1/17/abec0bd0f9347dae13e60b33325cb199312798842901953495e19f3bb3c8/mlx-0.31.1-cp314-cp314-macosx_26_0_arm64.whl"
-        sha256 "69bc88b41ddd61b44cd6a4d417790f9971ba3fdf58d824934cea95a95b9b4031"
+        url "https://files.pythonhosted.org/packages/63/5a/81cf057dbc005a43d27b7dfaff88198c61bbfe76cb8da3499821083c3fca/mlx-0.31.0-cp314-cp314-macosx_26_0_arm64.whl"
+        sha256 "d2014d113070846c6cdee980653f561c92a4a663a449f64e70c15bbf74d637e1"
       elsif MacOS.version >= :sequoia
-        url "https://files.pythonhosted.org/packages/98/58/2d925cb3fa3cd28d279ed6f44508ab7fbbf7359b17359914aa3652a7d734/mlx-0.31.1-cp314-cp314-macosx_15_0_arm64.whl"
-        sha256 "d90b0529b22553eb1353b113b7233aa391ca55e24b1ba69024c732fcc21c5c49"
+        url "https://files.pythonhosted.org/packages/e3/6b/70f0a254d7ace58a030547a99219f1342c3cf383029e1af90eee3efaeb85/mlx-0.31.0-cp314-cp314-macosx_15_0_arm64.whl"
+        sha256 "ba330fe40d73b202880bbb5cac62de0b639cf4c44a12853bcadb34a9e3ffe880"
       else
-        url "https://files.pythonhosted.org/packages/99/65/208f511acd5fb1ed0b08f047bd6229583845cc6f4b5aa6547a3219332dbb/mlx-0.31.1-cp314-cp314-macosx_14_0_arm64.whl"
-        sha256 "bba9d471ba20e050676292b1089a355c8042d3fc9462e4c1738a9735d7d40cfa"
+        url "https://files.pythonhosted.org/packages/66/60/0152a44ed737c3b16e9044909d01212b99e216c6ab4b2f76faa054ae8172/mlx-0.31.0-cp314-cp314-macosx_14_0_arm64.whl"
+        sha256 "cce3e15cf11c608c9e721502fe56e54f9f48b897e9b80f1204a48643d68710c0"
       end
     end
 
     resource "mlx-metal" do
       if MacOS.version >= 26
-        url "https://files.pythonhosted.org/packages/51/bc/987cb99e3aafb296aa11ce5133838a10eae8447edd53168d0804d4fb3a14/mlx_metal-0.31.1-py3-none-macosx_26_0_arm64.whl"
-        sha256 "e7324b7c56b519ae67c025d3ced07e5d35bc3a9f19d4c45fe4927f385148c59e"
+        url "https://files.pythonhosted.org/packages/ed/8f/cdaffd759b4c71e74c294e773daacad8aafabac103b93e0aa56d4468d279/mlx_metal-0.31.0-py3-none-macosx_26_0_arm64.whl"
+        sha256 "7fd412f55ddf9f1d90c2cd86ce281d19e8eb93d093c6dbd784a49f8bd7d0a22c"
       elsif MacOS.version >= :sequoia
-        url "https://files.pythonhosted.org/packages/c7/34/4c3c6890ce6095b2ab2ba2f5f15c9a7ba17208d47f8cacb572885a2dc0eb/mlx_metal-0.31.1-py3-none-macosx_15_0_arm64.whl"
-        sha256 "6c56bd8cd27743e635f5a90a22535af7c31bd22b4b126d46b6da2da52d72e413"
+        url "https://files.pythonhosted.org/packages/8d/42/c6d7bfd097b777f932d6cf8c79e41b565070b63cc452a069b8804e505140/mlx_metal-0.31.0-py3-none-macosx_15_0_arm64.whl"
+        sha256 "554dc7cb29e0ea5fb6941df42f11a1de385b095848e6183c7a99d7c1f1a11f5d"
       else
-        url "https://files.pythonhosted.org/packages/39/66/2313497fdbc7fbadf8e026c09366e3f049f9114e65ca4edc23cdb8699186/mlx_metal-0.31.1-py3-none-macosx_14_0_arm64.whl"
-        sha256 "70741174131dbf7fdd479cb730e06e08c358eac3bf7905d9e884e7960cfdd5b8"
+        url "https://files.pythonhosted.org/packages/94/4f/0a0671dfa62b59bf429edab0e2c9c7f9bc77865aa4218cd46f2f41d7d11a/mlx_metal-0.31.0-py3-none-macosx_14_0_arm64.whl"
+        sha256 "1c572a6e3634a63060c103b0c38ac309e2d217be15519e3d8f0d6b452bb015f5"
       end
     end
 
     resource "numpy" do
-      url "https://files.pythonhosted.org/packages/32/af/a7a39464e2c0a21526fb4fb76e346fb172ebc92f6d1c7a07c2c139cc17b1/numpy-2.4.3-cp314-cp314-macosx_14_0_arm64.whl"
-      sha256 "a111698b4a3f8dcbe54c64a7708f049355abd603e619013c346553c1fd4ca90b"
+      url "https://files.pythonhosted.org/packages/fb/0b/f9e49ba6c923678ad5bc38181c08ac5e53b7a5754dbca8e581aa1a56b1ff/numpy-2.4.2-cp314-cp314-macosx_14_0_arm64.whl"
+      sha256 "7cdde6de52fb6664b00b056341265441192d1291c130e99183ec0d4b110ff8b1"
     end
 
     resource "safetensors" do
@@ -63,9 +63,9 @@ class Calm < Formula
       url "https://files.pythonhosted.org/packages/2e/47/174dca0502ef88b28f1c9e06b73ce33500eedfac7a7692108aec220464e7/tokenizers-0.22.2-cp39-abi3-macosx_11_0_arm64.whl"
       sha256 "1e418a55456beedca4621dbab65a318981467a2b188e982a23e117f115ce5001"
     end
+
   end
 
-  # The wheel for the main package, used for installation to avoid Rust build
   resource "calm-cli" do
     url "https://files.pythonhosted.org/packages/24/99/003fa88b0a6e66b7c49e9c45bed32da3305ac3f018fc4089696df7bb3ee9/calm_cli-0.3.0-py3-none-any.whl"
     sha256 "be0bd30d7c87b21823b013d2b8323cdf9d16ffec5e19f48d233843bd90970d7e"
@@ -92,8 +92,8 @@ class Calm < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/94/b8/00651a0f559862f3bb7d6f7477b192afe3f583cc5e26403b44e59a55ab34/filelock-3.25.2.tar.gz"
-    sha256 "b64ece2b38f4ca29dd3e810287aa8c48182bbecd1ae6e9ae126c9b35f1382694"
+    url "https://files.pythonhosted.org/packages/77/18/a1fd2231c679dcb9726204645721b12498aeac28e1ad0601038f94b42556/filelock-3.25.0.tar.gz"
+    sha256 "8f00faf3abf9dc730a1ffe9c354ae5c04e079ab7d3a683b7c32da5dd05f26af3"
   end
 
   resource "fsspec" do
@@ -117,8 +117,8 @@ class Calm < Formula
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/b4/a8/94ccc0aec97b996a3a68f3e1fa06a4bd7185dd02bf22bfba794a0ade8440/huggingface_hub-1.7.1.tar.gz"
-    sha256 "be38fe66e9b03c027ad755cb9e4b87ff0303c98acf515b5d579690beb0bf3048"
+    url "https://files.pythonhosted.org/packages/ae/76/b5efb3033d8499b17f9386beaf60f64c461798e1ee16d10bc9c0077beba5/huggingface_hub-1.5.0.tar.gz"
+    sha256 "f281838db29265880fb543de7a23b0f81d3504675de82044307ea3c6c62f799d"
   end
 
   resource "idna" do
@@ -126,7 +126,7 @@ class Calm < Formula
     sha256 "795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"
   end
 
-  resource "Jinja2" do
+  resource "jinja2" do
     url "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz"
     sha256 "0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d"
   end
@@ -136,7 +136,7 @@ class Calm < Formula
     sha256 "cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3"
   end
 
-  resource "MarkupSafe" do
+  resource "markupsafe" do
     url "https://files.pythonhosted.org/packages/7e/99/7690b6d4034fffd95959cbe0c02de8deb3098cc577c67bb6a24fe5d7caa7/markupsafe-3.0.3.tar.gz"
     sha256 "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698"
   end
@@ -161,12 +161,12 @@ class Calm < Formula
     sha256 "3871a3df67c710aaf7bb8d214cc997342e63ceebd940c8c7fc65c9b3d697591a"
   end
 
-  resource "Pygments" do
+  resource "pygments" do
     url "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
     sha256 "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
   end
 
-  resource "PyYAML" do
+  resource "pyyaml" do
     url "https://files.pythonhosted.org/packages/05/8e/961c0007c59b8dd7729d542c61a4d537767a59645b82a0b521206e1e25c2/pyyaml-6.0.3.tar.gz"
     sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
   end
@@ -209,33 +209,25 @@ class Calm < Formula
   def install
     venv = virtualenv_create(libexec, "python3.14")
 
-    # Process all resources
     resources.each do |r|
       next if r.name == "calm-cli"
 
       if r.url.end_with?(".whl")
-        # Pip is strict about wheel filenames.
-        # Homebrew's cached_download has a hash prefix that pip rejects.
-        # We symlink it to its original name in the buildpath.
         r.fetch
         wheel_name = File.basename(r.url.split("#").first)
         (buildpath/wheel_name).make_relative_symlink(r.cached_download)
         venv.pip_install buildpath/wheel_name
       else
-        # Standard installation for source distributions
         venv.pip_install r
       end
     end
 
-    # Install the main package from the wheel resource instead of buildpath
-    # This avoids the Rust build backend requirements of the source distribution.
     main_res = resource("calm-cli")
     main_res.fetch
     main_wheel = File.basename(main_res.url.split("#").first)
     (buildpath/main_wheel).make_relative_symlink(main_res.cached_download)
     venv.pip_install buildpath/main_wheel
 
-    # Manually link the entry points to bin
     bin.install_symlink libexec/"bin/calm"
     bin.install_symlink libexec/"bin/calmd"
   end
