@@ -13,7 +13,7 @@ class Calm < Formula
 
   depends_on arch: :arm64
   depends_on "libyaml"
-  depends_on :macos
+  depends_on macos: :sequoia
   depends_on "python@3.14"
 
   on_macos do
@@ -22,17 +22,37 @@ class Calm < Formula
       sha256 "a85d3d43743174393afe27835bde0cd146e652b5fcfdbcd624602daef2ef3259"
     end
 
+    # Wheel tags encode the *minimum* macOS version, so pick the newest wheel
+    # each OS supports: macOS 26+ gets the 26.0 build, Sequoia gets 15.0, older
+    # variants keep the 14.0 build for parse completeness.
     resource "mlx" do
-      # macosx_14_0 wheel tags are backward compatible; they install on all
-      # supported macOS versions, so avoid version-conditional MacOS.version
-      # checks in the formula body (unsupported by ``brew readall`` --os=all).
-      url "https://files.pythonhosted.org/packages/66/60/0152a44ed737c3b16e9044909d01212b99e216c6ab4b2f76faa054ae8172/mlx-0.31.0-cp314-cp314-macosx_14_0_arm64.whl"
-      sha256 "cce3e15cf11c608c9e721502fe56e54f9f48b897e9b80f1204a48643d68710c0"
+      on_tahoe :or_newer do
+        url "https://files.pythonhosted.org/packages/63/5a/81cf057dbc005a43d27b7dfaff88198c61bbfe76cb8da3499821083c3fca/mlx-0.31.0-cp314-cp314-macosx_26_0_arm64.whl"
+        sha256 "d2014d113070846c6cdee980653f561c92a4a663a449f64e70c15bbf74d637e1"
+      end
+      on_sequoia do
+        url "https://files.pythonhosted.org/packages/e3/6b/70f0a254d7ace58a030547a99219f1342c3cf383029e1af90eee3efaeb85/mlx-0.31.0-cp314-cp314-macosx_15_0_arm64.whl"
+        sha256 "ba330fe40d73b202880bbb5cac62de0b639cf4c44a12853bcadb34a9e3ffe880"
+      end
+      on_sonoma :or_older do
+        url "https://files.pythonhosted.org/packages/66/60/0152a44ed737c3b16e9044909d01212b99e216c6ab4b2f76faa054ae8172/mlx-0.31.0-cp314-cp314-macosx_14_0_arm64.whl"
+        sha256 "cce3e15cf11c608c9e721502fe56e54f9f48b897e9b80f1204a48643d68710c0"
+      end
     end
 
     resource "mlx-metal" do
-      url "https://files.pythonhosted.org/packages/94/4f/0a0671dfa62b59bf429edab0e2c9c7f9bc77865aa4218cd46f2f41d7d11a/mlx_metal-0.31.0-py3-none-macosx_14_0_arm64.whl"
-      sha256 "1c572a6e3634a63060c103b0c38ac309e2d217be15519e3d8f0d6b452bb015f5"
+      on_tahoe :or_newer do
+        url "https://files.pythonhosted.org/packages/ed/8f/cdaffd759b4c71e74c294e773daacad8aafabac103b93e0aa56d4468d279/mlx_metal-0.31.0-py3-none-macosx_26_0_arm64.whl"
+        sha256 "7fd412f55ddf9f1d90c2cd86ce281d19e8eb93d093c6dbd784a49f8bd7d0a22c"
+      end
+      on_sequoia do
+        url "https://files.pythonhosted.org/packages/8d/42/c6d7bfd097b777f932d6cf8c79e41b565070b63cc452a069b8804e505140/mlx_metal-0.31.0-py3-none-macosx_15_0_arm64.whl"
+        sha256 "554dc7cb29e0ea5fb6941df42f11a1de385b095848e6183c7a99d7c1f1a11f5d"
+      end
+      on_sonoma :or_older do
+        url "https://files.pythonhosted.org/packages/94/4f/0a0671dfa62b59bf429edab0e2c9c7f9bc77865aa4218cd46f2f41d7d11a/mlx_metal-0.31.0-py3-none-macosx_14_0_arm64.whl"
+        sha256 "1c572a6e3634a63060c103b0c38ac309e2d217be15519e3d8f0d6b452bb015f5"
+      end
     end
 
     resource "numpy" do
