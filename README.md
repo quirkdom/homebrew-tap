@@ -1,16 +1,36 @@
 # Quirkdom Tap
 
-## How do I install these formulae?
+Homebrew tap for Quirkdom tools.
 
-`brew install quirkdom/tap/<formula>`
+## Available Formulae
 
-Or `brew tap quirkdom/tap` and then `brew install <formula>`.
+- **[`catpult`](https://github.com/quirkdom/catpult)** — Peer-to-peer file sharing & streaming via secure, ephemeral tunnels. Powered by Tailcat.
+- **[`calm`](https://github.com/quirkdom/calm)** — Terminal-native CLI assistant backed by a local calmd daemon.
+
+## Installation
+
+```sh
+brew install quirkdom/tap/<formula>
+```
+
+For example, to install `catpult`:
+
+```sh
+brew install quirkdom/tap/catpult
+```
+
+Or tap first and then install:
+
+```sh
+brew tap quirkdom/tap
+brew install catpult
+```
 
 Or, in a `brew bundle` `Brewfile`:
 
 ```ruby
 tap "quirkdom/tap"
-brew "<formula>"
+brew "catpult"
 ```
 
 ## Documentation
