@@ -37,7 +37,7 @@ class Catpult < Formula
       ]
     end
 
-    system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}", tags: tags.join(","))
+    system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}", tags: tags), "./cmd/catpult"
   end
 
   test do
