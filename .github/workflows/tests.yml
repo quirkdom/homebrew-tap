@@ -49,8 +49,18 @@ jobs:
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
-      - run: brew test-bot --only-formulae --skip-formulae=calm
+      - name: Build bottles for changed formulae (excluding calm)
         if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin "${GITHUB_BASE_REF:-main}" --depth=1 || true
+          FORMULAE=$(git diff --name-only "origin/${GITHUB_BASE_REF:-main}...HEAD" Formula/ | sed -E 's|^Formula/(.*)\.rb$|\1|' | grep -v '^calm$' || true)
+          if [[ -n "$FORMULAE" ]]; then
+            FORMULAE_LIST=$(echo "$FORMULAE" | paste -sd, -)
+            echo "Building bottles for: $FORMULAE_LIST"
+            brew test-bot --only-formulae --testing-formulae="$FORMULAE_LIST"
+          else
+            echo "No formulae to test/bottle (calm is excluded)."
+          fi
 
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
@@ -58,3 +68,4 @@ jobs:
         with:
           name: bottles_${{ matrix.os }}
           path: '*.bottle.*'
+          if-no-files-found: ignore
