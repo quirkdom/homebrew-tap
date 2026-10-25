@@ -7,6 +7,10 @@ class Calm < Formula
   sha256 "b060951121fc1e9db2824b06dade08dd08985633eb997c0f6a7b50f298038584"
   license "MIT"
 
+  livecheck do
+    skip "Formula dependencies and wheel resources must be updated manually"
+  end
+
   depends_on arch: :arm64
   depends_on :macos
   depends_on "python@3.14"
