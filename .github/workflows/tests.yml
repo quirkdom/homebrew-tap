@@ -52,8 +52,9 @@ jobs:
       - name: Build bottles for changed formulae (excluding calm)
         if: github.event_name == 'pull_request'
         run: |
-          git fetch origin "${GITHUB_BASE_REF:-main}" --depth=1 || true
-          FORMULAE=$(git diff --name-only "origin/${GITHUB_BASE_REF:-main}...HEAD" Formula/ | sed -E 's|^Formula/(.*)\.rb$|\1|' | grep -v '^calm$' || true)
+          TAP_DIR="$(brew --repo quirkdom/tap)"
+          git -C "$TAP_DIR" fetch origin "${GITHUB_BASE_REF:-main}" --depth=1 || true
+          FORMULAE=$(git -C "$TAP_DIR" diff --name-only "origin/${GITHUB_BASE_REF:-main}...HEAD" Formula/ | sed -E 's|^Formula/(.*)\.rb$|\1|' | grep -v '^calm$' || true)
           if [[ -n "$FORMULAE" ]]; then
             FORMULAE_LIST=$(echo "$FORMULAE" | paste -sd, -)
             echo "Building bottles for: $FORMULAE_LIST"
