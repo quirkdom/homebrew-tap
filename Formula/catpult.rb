@@ -1,5 +1,5 @@
 class Catpult < Formula
-  desc "Peer-to-peer file sharing & streaming via secure, ephemeral tunnels. Powered by Tailcat."
+  desc "Share secrets and streams over encrypted, ephemeral peer-to-peer tunnels"
   homepage "https://github.com/quirkdom/catpult"
   url "https://github.com/quirkdom/catpult/archive/refs/tags/v0.1-alpha.tar.gz"
   sha256 "ff9dc45ace5c060288b8fe26b21b52e7e617c144c9641dba398f353f36514d13"
