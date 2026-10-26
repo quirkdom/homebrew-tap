@@ -102,7 +102,7 @@ git pull
 ### `catpult`
 - **Go Entrypoint**: The Go source files are located in `./cmd/catpult`, not in the archive root. The `go build` invocation in `Formula/catpult.rb` must explicitly target `./cmd/catpult`:
   ```ruby
-  system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}", tags: tags), "./cmd/catpult"
+system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}", tags: tags), "./cmd/catpult"
   ```
 - **Bottling**: Fully supported and automated across macOS ARM64 and Linux x86_64.
 
@@ -112,8 +112,8 @@ git pull
 - **Unbottled by Design**: `calm` is a Python virtualenv-based CLI assistant that relies on pre-compiled PyPI wheel resources (`mlx`, `hf-xet`) rather than compiling from native source.
 - **Platform Restrictions**:
   ```ruby
-  depends_on arch: :arm64
-  depends_on :macos
+depends_on arch: :arm64
+depends_on :macos
   ```
   `calm` is Apple Silicon and macOS-only. It cannot build or run on Linux.
 - **Excluded from CI Bottle Compilation**:
@@ -125,8 +125,8 @@ git pull
 - **Livecheck / Autobump Skipped**:
   `calm.rb` contains:
   ```ruby
-  livecheck do
-    skip "Formula dependencies and wheel resources must be updated manually"
-  end
+livecheck do
+  skip "Formula dependencies and wheel resources must be updated manually"
+end
   ```
   Because updating `calm` requires calculating updated SHA256 hashes and URLs for the wheel resources per macOS version, automated bumps are disabled. Updates must be tested and applied manually.
