@@ -33,6 +33,7 @@ tap "quirkdom/tap"
 brew "catpult"
 ```
 
-## Documentation
+## Documentation & Contributing
 
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+- See [`RELEASING.md`](RELEASING.md) for the guide on testing formulae, CI bottle builds, and the release publishing process.
+- Homebrew documentation: `brew help`, `man brew` or visit [Homebrew's documentation](https://docs.brew.sh).
