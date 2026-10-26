@@ -6,6 +6,13 @@ class Catpult < Formula
   license "BSD-3-Clause"
   head "https://github.com/quirkdom/catpult.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/quirkdom/homebrew-tap/releases/download/catpult-0.1-alpha"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "bfacbf2fd920a085500321541c99c8b1317a0acad9639abe4928cf6d6e5cb3a8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "669308864c82e4e7c13e7a297bcc33e7c3ac95493d8ba484d2d2943edcf02084"
+  end
+
   depends_on "go" => :build
 
   def install
