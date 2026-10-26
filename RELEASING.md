@@ -20,6 +20,7 @@ This tap uses standard Homebrew CI automation powered by GitHub Actions:
   - Pushes the commit to `main` with `Closes #<PR_NUMBER>`, which automatically merges and closes the PR.
 - **`.github/workflows/autobump.yml`**:
   - Periodic automated version bumps for formulae that support `brew livecheck`.
+  - Autobump skips **pre-release versions as unstable** (tags containing keywords like `alpha`, `beta`, `rc`, `dev`). It only fires when the newest tag is a stable release. To bump a pre-release, use the manual bump command (see the `catpult` caveats below).
 
 ---
 
@@ -101,10 +102,18 @@ git pull
 
 ### `catpult`
 - **Go Entrypoint**: The Go source files are located in `./cmd/catpult`, not in the archive root. The `go build` invocation in `Formula/catpult.rb` must explicitly target `./cmd/catpult`:
-  ```ruby
+```ruby
 system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}", tags: tags), "./cmd/catpult"
-  ```
+```
 - **Bottling**: Fully supported and automated across macOS ARM64 and Linux x86_64.
+- **Pre-release Versions Need Manual Bumps**:
+  The current release (`0.1-alpha`) is a pre-release. `brew bump` treats versions containing unstable keywords (`alpha`, `beta`, `rc`, `dev`, ...) as unstable, so `autobump.yml` skips them and logs `unable to get versions` until a stable tag exists. This is intentional: pre-releases are bumped manually, stable releases are bumped automatically.
+  To bump a pre-release manually:
+  ```bash
+  brew bump-formula-pr --no-fork quirkdom/tap/catpult --version=0.2-beta
+  ```
+  This creates the update branch and PR automatically. Continue with steps 3–5 of the release flow above (verify CI bottles, dispatch `publish.yml`, pull `main`).
+  Once a stable tag (e.g. `v0.2`) is pushed, autobump picks it up on the next nightly run and opens a bump PR on its own (jumping straight from the pre-release to the new stable version).
 
 ---
 
