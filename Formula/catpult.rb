@@ -1,8 +1,8 @@
 class Catpult < Formula
   desc "Share secrets and streams over encrypted, ephemeral peer-to-peer tunnels"
   homepage "https://github.com/quirkdom/catpult"
-  url "https://github.com/quirkdom/catpult/archive/refs/tags/v0.1-alpha.tar.gz"
-  sha256 "ff9dc45ace5c060288b8fe26b21b52e7e617c144c9641dba398f353f36514d13"
+  url "https://github.com/quirkdom/catpult/archive/refs/tags/v0.2-beta.tar.gz"
+  sha256 "a201b3012ef3cb3bf790d903861fea64717692a8487233b5d8367755dab76d84"
   license "BSD-3-Clause"
   head "https://github.com/quirkdom/catpult.git", branch: "master"
 
